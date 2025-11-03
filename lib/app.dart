@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:telas_cadastro/features/splash_page.dart';
+import 'package:telas_cadastro/features/Onboarding/onboarding_page.dart';
+import 'package:telas_cadastro/features/Splash/splash_page.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -10,10 +11,11 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Telas Cadastro',
       // Define a página inicial
-      initialRoute: '/splash',
+      initialRoute: '/onboarding',
       // Define as rotas do app
       routes: {
-        '/splash': (context) => SplashPage(),
+        // '/splash': (context) => SplashPage(),
+        '/onboarding': (context) => const OnboardingPage(),
         // Adicione outras rotas aqui, ex:
         // '/home': (context) => const HomePage(),
       },
