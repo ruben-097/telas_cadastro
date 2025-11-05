@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:telas_cadastro/common.constants/app_colors.dart';
+import 'package:telas_cadastro/features/Sign/sign_in_page.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -84,7 +85,7 @@ class OnboardingPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     const Text(
-                      'Your journey to seamless app experiences starts here. Crafted for performance, built for you',
+                      'Your journey to seamless app experiences starts here.Crafted for performance, built for you',
                       textAlign: TextAlign.start,
                       style: TextStyle(
                         color: Color.fromARGB(255, 202, 200, 200),
@@ -98,7 +99,12 @@ class OnboardingPage extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-                            print('Botão clicado!');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SignInPage(),
+                              ),
+                            );
                           },
                           borderRadius: BorderRadius.circular(
                             12,
