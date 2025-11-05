@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:telas_cadastro/features/Onboarding/onboarding_page.dart';
 import 'package:telas_cadastro/features/Sign/sign_in_page.dart';
+import 'package:telas_cadastro/features/SignUp/sign_up_page.dart';
 import 'package:telas_cadastro/features/Splash/splash_page.dart';
 
 class App extends StatelessWidget {
@@ -18,6 +19,7 @@ class App extends StatelessWidget {
         // '/splash': (context) => SplashPage(),
         '/onboarding': (context) => const OnboardingPage(),
         '/signin': (context) => SignInPage(),
+        '/signup': (context) => SignUpPage(),
         // Adicione outras rotas aqui, ex:
         // '/home': (context) => const HomePage(),
       },

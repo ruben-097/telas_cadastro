@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:telas_cadastro/common.constants/app_colors.dart';
 import 'package:telas_cadastro/features/Sign/sign_in_page.dart';
+import 'package:telas_cadastro/features/SignUp/sign_up_page.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -141,7 +142,12 @@ class OnboardingPage extends StatelessWidget {
 
                         InkWell(
                           onTap: () {
-                            print('Botão clicado!');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SignUpPage(),
+                              ),
+                            );
                           },
                           borderRadius: BorderRadius.circular(
                             12,
