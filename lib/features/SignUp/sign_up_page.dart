@@ -2,8 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:telas_cadastro/common.constants/app_colors.dart';
 import 'package:telas_cadastro/features/Sign/sign_in_page.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   SignUpPage({super.key});
+
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +153,7 @@ class SignUpPage extends StatelessWidget {
 
                         // Password
                         TextFormField(
-                          obscureText: true,
+                          obscureText: _obscurePassword,
                           style: const TextStyle(
                             color: AppColors.blackText,
                             fontSize: 16,
@@ -155,6 +163,19 @@ class SignUpPage extends StatelessWidget {
                             hintStyle: const TextStyle(
                               color: AppColors.blackText,
                               fontSize: 14,
+                            ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _obscurePassword
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: AppColors.pinkColor,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _obscurePassword = !_obscurePassword;
+                                });
+                              },
                             ),
                             filled: true,
                             fillColor: AppColors.lightColor,
@@ -180,7 +201,7 @@ class SignUpPage extends StatelessWidget {
 
                         const SizedBox(height: 20),
                         TextFormField(
-                          obscureText: true,
+                          obscureText: _obscureConfirmPassword,
                           style: const TextStyle(
                             color: AppColors.blackText,
                             fontSize: 16,
@@ -191,6 +212,22 @@ class SignUpPage extends StatelessWidget {
                               color: AppColors.blackText,
                               fontSize: 14,
                             ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _obscureConfirmPassword
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: AppColors.pinkColor,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _obscureConfirmPassword =
+                                      !_obscureConfirmPassword;
+                                  // _isPasswordVisible = !_isPasswordVisible;
+                                });
+                              },
+                            ),
+
                             filled: true,
                             fillColor: AppColors.lightColor,
                             border: OutlineInputBorder(

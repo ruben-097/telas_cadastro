@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:telas_cadastro/common.constants/app_colors.dart';
 
-class CreatePassword extends StatelessWidget {
+class CreatePassword extends StatefulWidget {
   const CreatePassword({super.key});
+
+  @override
+  State<CreatePassword> createState() => _CreatePasswordState();
+}
+
+class _CreatePasswordState extends State<CreatePassword> {
+  bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +81,7 @@ class CreatePassword extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         TextFormField(
-                          obscureText: true,
+                          obscureText: _obscurePassword,
                           style: const TextStyle(
                             color: AppColors.blackText,
                             fontSize: 16,
@@ -83,6 +91,19 @@ class CreatePassword extends StatelessWidget {
                             hintStyle: const TextStyle(
                               color: AppColors.blackText,
                               fontSize: 14,
+                            ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _obscurePassword
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: AppColors.darkBlue,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _obscurePassword = !_obscurePassword;
+                                });
+                              },
                             ),
                             filled: true,
 
@@ -119,6 +140,21 @@ class CreatePassword extends StatelessWidget {
                             hintStyle: const TextStyle(
                               color: AppColors.blackText,
                               fontSize: 14,
+                            ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _obscureConfirmPassword
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: AppColors.darkBlue,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _obscureConfirmPassword =
+                                      !_obscureConfirmPassword;
+                                  // _isPasswordVisible = !_isPasswordVisible;
+                                });
+                              },
                             ),
                             filled: true,
                             fillColor: AppColors.lightColor,

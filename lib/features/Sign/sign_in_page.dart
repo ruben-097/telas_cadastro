@@ -3,8 +3,15 @@ import 'package:telas_cadastro/common.constants/app_colors.dart';
 import 'package:telas_cadastro/features/Passoword/password_page.dart';
 import 'package:telas_cadastro/features/SignUp/sign_up_page.dart';
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
+
+  @override
+  State<SignInPage> createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+  bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +110,7 @@ class SignInPage extends StatelessWidget {
 
                         // Password
                         TextFormField(
-                          obscureText: true,
+                          obscureText: _obscurePassword,
                           style: const TextStyle(
                             color: AppColors.blackText,
                             fontSize: 16,
@@ -113,6 +120,19 @@ class SignInPage extends StatelessWidget {
                             hintStyle: const TextStyle(
                               color: AppColors.blackText,
                               fontSize: 14,
+                            ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _obscurePassword
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: AppColors.primaryColor,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _obscurePassword = !_obscurePassword;
+                                });
+                              },
                             ),
                             filled: true,
                             fillColor: AppColors.lightColor,
