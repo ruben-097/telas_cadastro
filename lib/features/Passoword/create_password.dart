@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:telas_cadastro/common.constants/app_colors.dart';
+import 'package:telas_cadastro/features/Passoword/password_changed.dart';
 
 class CreatePassword extends StatefulWidget {
   const CreatePassword({super.key});
@@ -188,7 +189,14 @@ class _CreatePasswordState extends State<CreatePassword> {
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const PasswordChanged(),
+                                ),
+                              );
+                            },
                             child: const Text(
                               'Create Password',
                               style: TextStyle(
