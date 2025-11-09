@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:telas_cadastro/features/Onboarding/onboarding_page.dart';
+import 'package:telas_cadastro/features/Passoword/check_email.dart';
+import 'package:telas_cadastro/features/Passoword/password_changed.dart';
 import 'package:telas_cadastro/features/Sign/sign_in_page.dart';
 import 'package:telas_cadastro/features/SignUp/sign_up_page.dart';
 import 'package:telas_cadastro/features/Splash/splash_page.dart';
@@ -13,13 +15,15 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Telas Cadastro',
       // Define a página inicial
-      initialRoute: '/onboarding',
+      initialRoute: '/password_changed',
       // Define as rotas do app
       routes: {
         // '/splash': (context) => SplashPage(),
-        '/onboarding': (context) => const OnboardingPage(),
-        '/signin': (context) => SignInPage(),
-        '/signup': (context) => SignUpPage(),
+        // '/onboarding': (context) => const OnboardingPage(),
+        //  '/signin': (context) => SignInPage(),
+        //   '/signup': (context) => SignUpPage(),
+        //  '/check_email': (context) => const CheckEmailPage(),
+        '/password_changed': (context) => const PasswordChanged(),
         // Adicione outras rotas aqui, ex:
         // '/home': (context) => const HomePage(),
       },

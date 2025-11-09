@@ -10,6 +10,9 @@ class AppColors {
   static const Color greyText = Color(0xFFB3B3B3);
   static const Color darkgreyText = Color(0xFF7A7A7A);
   static const Color redColor = Color(0xFFFF0000);
-  static const Color lightColor = Color.fromARGB(255, 226, 221, 221);
-  static const Color blackText = Color.fromARGB(255, 10, 10, 10);
+  static const Color lightColor = Color(0xFFE2DDDD);
+  static const Color blackText = Color(0xFF0A0A0A);
+  static const Color darkBlue = Color(0xFF1B1F29);
+  static const Color lightBlue = Color(0xFF9DBAE5);
+  static const Color lightGreen = Color(0xFF05B260);
 }
