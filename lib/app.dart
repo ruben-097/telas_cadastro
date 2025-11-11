@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:telas_cadastro/features/Onboarding/onboarding_page.dart';
 import 'package:telas_cadastro/features/Passoword/check_email.dart';
 import 'package:telas_cadastro/features/Passoword/password_changed.dart';
 import 'package:telas_cadastro/features/Passoword/password_page.dart';
 import 'package:telas_cadastro/features/Sign/sign_in_page.dart';
+import 'package:telas_cadastro/features/Sign/sign_in_bloc.dart';
 import 'package:telas_cadastro/features/SignUp/sign_up_page.dart';
+import 'package:telas_cadastro/features/SignUp/sign_up_bloc.dart';
 import 'package:telas_cadastro/features/Splash/splash_page.dart';
 
 class App extends StatelessWidget {
@@ -15,19 +18,22 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Telas Cadastro',
-      // Define a página inicial
       initialRoute: '/splash',
-      // Define as rotas do app
       routes: {
-        '/splash': (context) => SplashPage(),
+        '/splash': (context) => const SplashPage(),
         '/onboarding': (context) => const OnboardingPage(),
-        '/signin': (context) => SignInPage(),
-        '/signup': (context) => SignUpPage(),
+
+        // SignIn com BlocProvider
+        '/signin': (context) =>
+            BlocProvider(create: (_) => SignInBloc(), child: SignInPage()),
+
+        // SignUp com BlocProvider
+        '/signup': (context) =>
+            BlocProvider(create: (_) => SignUpBloc(), child: SignUpPage()),
+
         '/check_email': (context) => const CheckEmailPage(),
         '/password_changed': (context) => const PasswordChanged(),
         '/password_page': (context) => PasswordPage(),
-        // Adicione outras rotas aqui, ex:
-        // '/home': (context) => const HomePage(),
       },
     );
   }

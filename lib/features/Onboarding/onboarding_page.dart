@@ -3,191 +3,176 @@ import 'package:telas_cadastro/common.constants/app_colors.dart';
 import 'package:telas_cadastro/features/Sign/sign_in_page.dart';
 import 'package:telas_cadastro/features/SignUp/sign_up_page.dart';
 
-class OnboardingPage extends StatelessWidget {
+class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
+
+  @override
+  State<OnboardingPage> createState() => _OnboardingPageState();
+}
+
+class _OnboardingPageState extends State<OnboardingPage> {
+  final PageController _pageController = PageController();
+  int _currentPage = 0;
+
+  final List<Map<String, dynamic>> _slides = [
+    {
+      "title": "Welcome to App",
+      "subtitle":
+          'Your journey to seamless app experiences starts here. Crafted for performance, built for you.',
+      "image": "assets/images/log1.png",
+      "titleColor": AppColors.primaryColor,
+    },
+    {
+      "title": "Stay connected",
+      "subtitle":
+          "Connect with your loved ones, share moments, and create lasting memories.",
+      "image": "assets/images/log2.png",
+      "titleColor": AppColors.pinkColor,
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
-      body: Center(
-        child: Column(
-          children: [
-            Padding(padding: EdgeInsets.only(top: 170)),
-            Container(
-              width: 120,
-              height: 120,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                color: const Color(0xFF1A203B),
-              ),
-              child: Image.asset(
-                'assets/images/log1.png',
-                width: 100,
-                height: 100,
-              ),
-            ),
-            SizedBox(height: 05),
-            RichText(
-              text: const TextSpan(
-                text: 'App',
-                style: TextStyle(
-                  color: AppColors.secondColor,
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Poppins',
-                ),
-                children: [
-                  TextSpan(
-                    text: 'Screen',
-                    style: TextStyle(
-                      color: AppColors.primaryColor,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Poppins',
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: 140),
-            Container(
-              // margin: const EdgeInsets.only(left: 20, right: 20),
-              height: 432,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: AppColors.secondColor,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                ),
-              ),
-
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 30,
-                  vertical: 40,
-                ),
-
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      body: Column(
+        children: [
+          Expanded(
+            child: PageView.builder(
+              controller: _pageController,
+              itemCount: _slides.length,
+              onPageChanged: (index) {
+                setState(() {
+                  _currentPage = index;
+                });
+              },
+              itemBuilder: (context, index) {
+                final slide = _slides[index];
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(padding: EdgeInsets.only(top: 15)),
-                    const Text(
-                      textAlign: TextAlign.start,
-                      'Welcome to \nApp',
-                      style: TextStyle(
-                        color: AppColors.whiteColor,
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Lato',
+                    SizedBox(height: 100),
+                    AnimatedOpacity(
+                      duration: Duration(milliseconds: 600),
+                      opacity: _currentPage == index ? 1.0 : 0.0,
+                      child: Image.asset(
+                        slide["image"]!,
+                        width: 200,
+                        height: 200,
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    const Text(
-                      'Your journey to seamless app experiences starts here.Crafted for performance, built for you',
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 202, 200, 200),
-                        fontSize: 15,
-                        fontFamily: 'Quicksand',
+                    // SizedBox(height: 30),
+                    AnimatedOpacity(
+                      duration: Duration(milliseconds: 600),
+                      opacity: _currentPage == index ? 1.0 : 0.0,
+                      child: Text(
+                        slide["title"]!,
+                        style: TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color: slide["titleColor"],
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 50),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const SignInPage(),
-                              ),
-                            );
-                          },
-                          borderRadius: BorderRadius.circular(
-                            12,
-                          ), // opcional: deixa o efeito arredondado
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 35,
-                              vertical: 13,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.primaryColor,
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Text(
-                                  'Sign in',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                SizedBox(width: 8),
-                                Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                  size: 16,
-                                ),
-                              ],
-                            ),
+                    // SizedBox(height: 15),
+                    AnimatedOpacity(
+                      duration: Duration(milliseconds: 600),
+                      opacity: _currentPage == index ? 1.0 : 0.0,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: Text(
+                          slide["subtitle"]!,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: AppColors.darkGreen,
                           ),
                         ),
-
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SignUpPage(),
-                              ),
-                            );
-                          },
-                          borderRadius: BorderRadius.circular(
-                            12,
-                          ), // opcional: deixa o efeito arredondado
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 35,
-                              vertical: 13,
-                            ),
-                            decoration: BoxDecoration(
-                              color: AppColors.pinkColor,
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            child: Row(
-                              children: const [
-                                Text(
-                                  'Sign up',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                SizedBox(width: 8),
-                                Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                  size: 16,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ],
+                );
+              },
+            ),
+          ),
+
+          // Indicators
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(
+              _slides.length,
+              (index) => AnimatedContainer(
+                duration: Duration(milliseconds: 300),
+                margin: EdgeInsets.symmetric(horizontal: 5),
+                width: _currentPage == index ? 20 : 8,
+                height: 8,
+                decoration: BoxDecoration(
+                  color: _currentPage == index
+                      ? AppColors.pinkColor
+                      : Colors.grey[300],
+                  borderRadius: BorderRadius.circular(4),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+
+          SizedBox(height: 30),
+
+          // Buttons
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // Sign In
+                Expanded(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => SignInPage()),
+                      );
+                    },
+                    child: Text(
+                      "Sign In",
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 20),
+                // Sign Up
+                Expanded(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.pinkColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => SignUpPage()),
+                      );
+                    },
+                    child: Text(
+                      "Sign Up",
+                      style: TextStyle(fontSize: 16, color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

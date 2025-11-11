@@ -131,7 +131,7 @@ class _CreatePasswordState extends State<CreatePassword> {
 
                         const SizedBox(height: 20),
                         TextFormField(
-                          obscureText: true,
+                          obscureText: _obscureConfirmPassword,
                           style: const TextStyle(
                             color: AppColors.blackText,
                             fontSize: 16,
