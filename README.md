@@ -8,33 +8,26 @@ Este projeto é um template completo de UI de autenticação em Flutter, contend
 
 # Este template inclui todas as telas base de um app real:
 
-  🔘 Splash Screen (com timer automático)
+✅ Splash Screen (com timer automático)
+✅ Onboarding com PageView + animações de Fade 
+✅ Botões Sign In / Sign Up 
+✅ Tela de Login com BLoC 
+✅ Tela de Cadastro com BLoC 
+✅ Recuperação de senha (4 etapas) 
+✅ Navegação usando rotas nomeadas
 
-  🔘 Onboarding com múltiplas páginas
-
-  🔘 Sign In Page (login)
-
-  🔘 Sign Up Page (criação de conta)
-
-  🔘 Forgot Password (recuperar senha)
-
-  🔘 Check Email (aviso de e-mail enviado)
-
-  🔘 OTP / Verification Code (caixas de código)
-
-  🔘 Create New Password (definição de nova senha)
-
+  
 # Todas as telas seguem o mesmo padrão visual: cores, tipografia, bordas e espaçamentos.
 
 🎨 Tecnologias e Padrões Usados
 
-  🔘 Flutter 3.x
+  ✅ Flutter 3.x
 
-  🔘 Navegação com Navigator.push e pushReplacement
+  ✅ Navegação com Navigator.push e pushReplacement
 
-  🔘 Widgets personalizados e estilos consistentes
+  ✅ Widgets personalizados e estilos consistentes
 
-  🔘 Uso de StatefulWidget para mudanças de estado (ex.: visibilidade de senha)
+  ✅ Flutter BLoC (para Sign In e Sign Up)
 
 🔰 Estrutura organizada por pastas:
 
@@ -49,34 +42,42 @@ Este projeto é um template completo de UI de autenticação em Flutter, contend
 
 lib/
 ├─ app.dart
+├─ main.dart
 ├─ common.constants/
 │ └─ app_colors.dart
 ├─ features/
+│ ├─ Splash/
+│ │ └─ splash_page.dart
 │ ├─ Onboarding/
 │ │ └─ onboarding_page.dart
 │ ├─ Sign/
-│ │ └─ sign_in_page.dart
+│ │ ├─ sign_in_page.dart
+│ │ └─ sign_in_bloc.dart
 │ ├─ SignUp/
-│ │ └─ sign_up_page.dart
-│ ├─ Password/
+│ │ ├─ sign_up_page.dart
+│ │ └─ sign_up_bloc.dart
+│ ├─ Passoword/
+│ │ ├─ check_email.dart
 │ │ ├─ password_page.dart
-│ │ ├─ check_email_page.dart
-│ │ ├─ otp_page.dart
-│ │ └─ create_new_password_page.dart
-│ └─ Splash/
-│ └─ splash_page.dart
-└─ main.dart
+│ │ └─ password_changed.dart
+
+🎨 Personalização
+
+Este template permite ajustes rápidos:
+
+  🔘 Alterar cores no arquivo app_colors.dart
+
+  🔘 Alterar imagens do onboarding em assets/images
+
+  🔘 Ajustar textos direto nos slides do Onboarding
+
 
 ▶️ Como Rodar o Projeto
-
-  1- Certifique-se de ter o Flutter instalado:
-      flutter --version
-
-  2- Instale as dependências:
-      flutter pub get
-
-  3- Rode o app
-      flutter run
+  git clone https://github.com/SEU_USUARIO/telas_cadastro.git
+  cd telas_cadastro
+  flutter pub get
+  flutter run
+ 
 
 🌐 Propósito deste Projeto
 
@@ -103,6 +104,12 @@ Não contém integração com API ou backend.
   🔘 criar novas telas (ex.: home page, perfil, dashboard)
 
   🔘 transformar em template público no pub.dev
+  
+👨‍💻 Autor
+
+Projeto desenvolvido por Ruben Miguel como prática de UI e navegação em Flutter.
+
+Se quiser aprimorar este template, fique à vontade para abrir PRs ou sugestões.
 
 📩 Contato
 
